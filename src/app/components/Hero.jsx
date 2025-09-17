@@ -2,9 +2,9 @@
  
  export default function Hero(){
     return(
-        <div className="mt-4 flex justify-between items-cemter gap-3 px-4 space-x-2 py-6">
+        <div className="mt-4 flex flex-col md:flex-row justify-between items-cemter gap-3 px-4 space-x-2 py-6">
           
-          <div className="w-1/2 flex flex-col max-w-xl h-full">
+          <div className="md:w-1/2 flex flex-col max-w-xl h-full">
             <h1 className="text-4xl font-semibold italic">
             Welcome to NewAItes,we have been wAIting for you.
           </h1>

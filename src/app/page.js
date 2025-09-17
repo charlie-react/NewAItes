@@ -15,8 +15,8 @@ export default function Home() {
     <div className=" bg-gradient-to-br from-teal-500 via-purple-600 to-pink-500 text-white/90" >
       {isOpen && <div className="w-full h-full bg-black/50 fixed" onClick={CloseModal}></div>}
        <Navbar open={OpenModal}/> 
-       {isOpen==="signup" && <Modal close={CloseModal} header={"Register an account."} buttonLabel={"Create account"} signup/>}
-       {isOpen==="login" && <Modal close={CloseModal} header={"Welcome Back"} buttonLabel={"Login"}/>}
+       {isOpen==="signup" && <Modal close={CloseModal} header={"Register an account."} buttonLabel={"Create account"} signup open={OpenModal} underLabel={"Got an account already?Login here"}/>}
+       {isOpen==="login" && <Modal open={OpenModal} close={CloseModal} header={"Welcome Back"} buttonLabel={"Login"} underLabel={"Don't have an account?Sign up"}/>}
       <Hero/>
       <Testimonials/>
       <Footer/>
