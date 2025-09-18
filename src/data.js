@@ -1,3 +1,5 @@
+ 
+
 export const testimonials =[
   {
     "id": 1,
@@ -31,3 +33,53 @@ export const testimonials =[
     "logoUrl": "/c4.avif",
     "flag":"https://flagcdn.com/w40/za.png"
   },]
+
+  export const projects = [
+  {
+    id: 1,
+    name: "AI Chatbot for Customer Support",
+    lastUpdated: "2025-09-12",
+    status: "Active",
+  },
+  {
+    id: 2,
+    name: "Image Generator MVP",
+    lastUpdated: "2025-09-10",
+    status: "Draft",
+  },
+  {
+    id: 3,
+    name: "Speech-to-Text API",
+    lastUpdated: "2025-09-05",
+    status: "Active",
+  },
+  {
+    id: 4,
+    name: "Sentiment Analysis Dashboard",
+    lastUpdated: "2025-08-30",
+    status: "Archived",
+  },
+];
+
+
+ 
+
+
+export const statusConfig = {
+  Active: {
+    style: "  text-green-700",
+    
+  },
+  Draft: {
+    style: "  text-yellow-700",
+ 
+  },
+  Archived: {
+    style: "  text-gray-700",
+   
+  },
+  Failed: {
+    style: "  text-red-700",
+    
+  },
+}
