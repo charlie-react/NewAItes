@@ -4,7 +4,7 @@ import { testimonials } from "@/data"
 
 export default function Testimonials() {
     return (
-        <div className="border-t-amber-100 border-t-2">
+        <div className="mt-4 ">
             <h1 className="text-center text-nowrap text-lg font-extrabold sm:text-4xl py-4 md:font-bold">
                 =====Testimonials and CEO's Note=====
             </h1>

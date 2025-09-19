@@ -20,12 +20,12 @@ export default function Navbar({open}) {
           </a>
         </li>
         <li>
-          <button   className="bg-gradient-to-r from-teal-500 to-pink-500 text-white px-3 py-2 md:py-4 rounded-md md:px-6 flex-1 cursor-pointer" onClick={()=>open("signup")} >
+          <button   className="bg-gradient-to-r from-teal-500/70 to-pink-500/60 text-white px-3 py-2 md:py-4 rounded-md md:px-6 flex-1 cursor-pointer" onClick={()=>open("signup")} >
             Sign Up
           </button>
         </li>
         <li>
-          <button   className="bg-gradient-to-r from-teal-500 to-pink-500 rounded-md text-white px-3 py-2 md:py-4 md:px-6 flex-1 cursor-pointer" onClick={()=>open("login")}>
+          <button   className="bg-gradient-to-r from-teal-500/70 to-pink-500/60 rounded-md text-white px-3 py-2 md:py-4 md:px-6 flex-1 cursor-pointer" onClick={()=>open("login")}>
             Log in
           </button>
         </li>

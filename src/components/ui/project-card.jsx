@@ -6,7 +6,7 @@ export default function ProjectCard({ name, status, lastUpdated }) {
     const { style } = statusConfig[status]
     console.log(style)
     return (
-        <div className="flex flex-col py-6 px-2 rounded-md gap-3 text-lg bg-white/40 border border-purple-400 shadow-xl">
+        <div className="flex flex-col py-6 px-2 rounded-lg gap-3 text-lg bg-white/40   shadow-xl">
             <h2 className="text-sm">
                 Title: <span className="font-medium">
                     {name}
@@ -31,7 +31,7 @@ export default function ProjectCard({ name, status, lastUpdated }) {
                     </span>}   {status}
                 </span>
             </div>
-            <div >
+            <div className=" flex-1 -ml-4" >
                 <Button variant={"ghost"} className={"cursor-pointer"}>
                     👁View
                 </Button>

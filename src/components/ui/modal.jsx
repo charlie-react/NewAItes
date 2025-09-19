@@ -4,13 +4,15 @@ import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 
+
 export default function Modal({ close, open, header, signup, buttonLabel, underLabel }) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
-  // const [loading,setLoading] =useState(false)
+
+
   const handleChangeModal = () => {
     open(signup ? "login" : "signup")
   }
@@ -65,7 +67,7 @@ export default function Modal({ close, open, header, signup, buttonLabel, underL
           window.location.href = '/dashboard'
         }, 1500);
       } else {
-        setError(data.error || "Unsuccessful Log in attempt.")
+        setError( "Unsuccessful Log in attempt.")
       }
     } catch (err) {
       setError("Something went wrong")
