@@ -1,45 +1,17 @@
-// "use client"
-
+import getUserFromSession from "@/lib/sessions";
 import { HomeIcon, LogOut, LucideArchive, Settings, SidebarIcon, User } from "lucide-react";
 import Link from "next/link";
-import {  cookies } from "next/headers";
-import prisma from "@/lib/prisma";
-import jwt from "jsonwebtoken"
-// import { useRouter } from "next/router";
+import Logout from "../components/Logout";
+import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({ children }) {
+const user = await getUserFromSession()
+  if(!user){
+    redirect("/")
+  }
 
-    // async function handleLogout() {
-    //     const res = await fetch("/api/logout", {
-    //         method: "POST",
-    //         headers: { "Content": "application/json" }
-    //     })
-
-    //     const data = await res.json()
-    //     if (res.ok) {
-    //         setInterval(() => {
-    //             window.location.href = '/dashboard'
-    //         }, 1500);
-    //     }
-    // }
-    const cookiesCheck = await cookies()
-    const token = cookiesCheck.get("authToken")?.value
-    let user =null
-
-    if(token){
-        try {
-            const decodeToken = jwt.verify(token,process.env.JWT_SECRET)
-            user = await prisma.user.findUnique({
-                where:{id:decodeToken.userId},
-                select:{id:true,name:true,email:true}
-            })
-        } catch (err) {
-            return err
-        }
-    }
     return (
-
-        <div className="flex flex-row ">
+        <div className="flex flex-row">
             <aside className="w-64 flex flex-col gap-3 bg-gradient-to-br p-4 from-amber-900 via-gray-800 to-orange-200  text-white/80">
                 <div className="flex justify-between items-center gap-2 p-6 bg-slate-200/70 rounded-lg  text-black/50">
                     <SidebarIcon size={24} />
@@ -73,14 +45,7 @@ export default async function DashboardLayout({ children }) {
                         </Link>
                     </div>
                 </div>
-                <Link href={("/api/logout")} className="flex mt-8 gap-2 items-center cursor-pointer" >
-                    <LogOut />
-                    <h3 className="text-lg">
-                        <span>
-                            Logout
-                        </span>
-                    </h3>
-                </Link>
+             <Logout/>
             </aside>
             <main className="flex-1">
                 {children}

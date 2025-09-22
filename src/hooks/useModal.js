@@ -1,17 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { ModalContext } from "../context/ModalContext"
+import { useContext } from "react"
 
 function useModal() {
-    const [isOpen, setIsOpen] = useState(null)
-    const OpenModal = (type) => {
-     return  setIsOpen(type)
-     
-    }
-    const CloseModal = () => {
-        return setIsOpen(null)
-    }
-    return {isOpen,OpenModal,CloseModal}
+   return useContext(ModalContext)
 }
 
 export default useModal

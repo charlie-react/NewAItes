@@ -5,28 +5,11 @@ import { announcements, projects, recentActivity, stats } from "@/data";
 import ProjectCard from "@/components/ui/project-card";
 import RecentActivities from "../components/RecentActivities";
 import Announcements from "../components/Announcements";
-import {  cookies } from "next/headers";
-import prisma from "@/lib/prisma";
-import jwt from "jsonwebtoken"
+import getUserFromSession from "@/lib/sessions";
+
 
 export default async function Dashboard() {
-   
-    const cookiesCheck = await cookies()
-    const token = cookiesCheck.get("authToken")?.value
-    let user =null
-
-    if(token){
-        try {
-            const decodeToken = jwt.verify(token,process.env.JWT_SECRET)
-            user = await prisma.user.findUnique({
-                where:{id:decodeToken.userId},
-                select:{id:true,name:true,email:true}
-            })
-        } catch (err) {
-            return err
-        }
-    }
-
+const user = await getUserFromSession()
     const hour = new Date().getHours()
     let greeting
     if (hour < 12) {
