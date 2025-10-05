@@ -164,3 +164,33 @@ export const announcements = [
   },
 ]
 
+export const team = [
+  {
+    id:1,
+    name: "Charles Afolabi",
+    role: "Founder & CEO",
+    image: "/meeenow.jpg",
+    bio: "Tech entrepreneur passionate about using AI to solve real-world challenges across Africa."
+  },
+  {
+    id:2,
+    name: "Alex Wilson",
+    role: "Chief Technology Officer",
+    image: "https://randomuser.me/api/portraits/women/68.jpg",
+    bio: "AI researcher with 10+ years of experience in machine learning, computer vision, and NLP."
+  },
+  {id:3,
+    name: "David Timer",
+    role: "Lead Software Engineer",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    bio: "Full-stack engineer specializing in building scalable AI-driven web applications."
+  },
+  {
+    id:4,
+    name: "Chinedu Obi",
+    role: "Head of Product",
+    image: "https://images.unsplash.com/photo-1518882570151-157128e78fa1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJsYWNrJTIwcGVvcGxlfGVufDB8fDB8fHww",
+    bio: "Product strategist focused on delivering user-centered AI solutions for businesses."
+  }
+]
+

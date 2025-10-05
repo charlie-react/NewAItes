@@ -23,7 +23,9 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const user = await getUserFromSession()
-
+  // if(!user){
+  //   redirect("/")
+  // }
 
   return (
     <html lang="en">
@@ -31,7 +33,6 @@ export default async function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ModalProvider>
-          <Navbar user={user} />
           {children}
         </ModalProvider>
       </body>

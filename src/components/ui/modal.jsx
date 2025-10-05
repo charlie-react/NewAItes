@@ -63,7 +63,7 @@ export default function Modal({ close, open, header, signup, buttonLabel, underL
         setSuccess(data.message || "Login success")
         setEmail("")
         setPassword("")
-        setInterval(() => {
+        setTimeout(() => {
           window.location.href = '/dashboard'
         }, 1500);
       } else {
@@ -74,7 +74,7 @@ export default function Modal({ close, open, header, signup, buttonLabel, underL
     }
   }
   return (
-    <div className="py-12 shadow-2xl bg-slate-200/100 absolute z-100 flex flex-col justify-center items-center gap-2 text-black w-200 h-130 rounded-sm left-100 ">
+    <div className="py-12 shadow-2xl bg-slate-200/100 absolute z-100 flex flex-col justify-center items-center gap-2 text-black w-200 h-130 rounded-sm left-60">
       <h1 className="text-2xl text-center mb-4">
         {header}
       </h1>

@@ -11,12 +11,12 @@
           <p className="mt-3 ">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis ex magnam illum! Repellat sed tenetur facere aliquid, iste quas voluptates commodi nisi reprehenderit libero ut beatae placeat quos eaque assumenda?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione accusamus vel laudantium quam aliquam, labore quia! Ea dolorem laborum, iure velit deleniti aspernatur non, nostrum maiores accusamus facere distinctio consectetur?Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, enim provident, amet consequatur, molestias minus voluptatibus laborum maxime iste consequuntur officiis distinctio sequi unde fugit accusantium necessitatibus cumque ad earum!Lorem
           </p>
-          <button className="p-3 rounded-lg bg-gradient-to-r from-teal-500/70 to-pink-500/60 rounded- mt-3 w-1/3 text-white cursor-pointer italic">
+          <button className="p-3 rounded-lg bg-purple-500 rounded- mt-3 w-1/3 text-white cursor-pointer italic">
             Join us
           </button>
           </div>
           <div>
-            <Image src="/ai2.avif" width={700} height={200} alt="hero" className="rounded-sm "/>
+            <Image src="/ai2.avif" width={700} height={200} alt="hero" className="rounded-2xl "/>
           </div>
         </div>
     )

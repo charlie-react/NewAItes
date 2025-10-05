@@ -3,25 +3,28 @@ import jwt from "jsonwebtoken";
 
 export async function middleware(req) {
   const token = req.cookies.get("authToken")?.value;
+  const isProtected =
+    req.nextUrl.pathname.startsWith("/dashboard") ||
+    req.nextUrl.pathname.startsWith("/settings");
 
   
-  if (!token) {
-    if (req.nextUrl.pathname.startsWith("/dashboard") || req.nextUrl.pathname.startsWith("/settings")) {
-      return NextResponse.redirect(new URL("/?authError=expired", req.url));
-    }
-    return NextResponse.next();
+  if (!token && isProtected) {
+    return NextResponse.redirect(new URL("/?authError=expired", req.url));
   }
 
-  try {
-    jwt.verify(token, process.env.JWT_SECRET);
-    return NextResponse.next();
-  } catch (err) {
-    // Token invalid → redirect only if they're on protected page
-    if (req.nextUrl.pathname.startsWith("/dashboard") || req.nextUrl.pathname.startsWith("/settings")) {
-      return NextResponse.redirect(new URL("/?authError=expired", req.url));
+ 
+  if (token) {
+    try {
+      jwt.verify(token, process.env.JWT_SECRET);
+      return NextResponse.next();
+    } catch (err) {
+      if (isProtected) {
+        return NextResponse.redirect(new URL("/?authError=expired", req.url));
+      }
     }
-    return NextResponse.next();
   }
+
+  return NextResponse.next(); 
 }
 
 export const config = {

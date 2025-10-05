@@ -2,13 +2,9 @@ import getUserFromSession from "@/lib/sessions";
 import { HomeIcon, LogOut, LucideArchive, Settings, SidebarIcon, User } from "lucide-react";
 import Link from "next/link";
 import Logout from "../components/Logout";
-import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({ children }) {
 const user = await getUserFromSession()
-  if(!user){
-    redirect("/")
-  }
 
     return (
         <div className="flex flex-row">

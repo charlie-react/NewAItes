@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Card({ company, country, testimony, imageUrl,flag }) {
     return (
-        <div className="bg-white/90 text-gray-800 rounded-lg py-4 px-3 mb-3 border-t-4 border-teal-500 shadow-xl  flex flex-col items-center gap-2 w-full cursor-crosshair">
+        <div className="bg-white/90 text-gray-800 rounded-lg py-4 px-3 mb-3 border-t-4 border-purple-400 shadow-xl  flex flex-col items-center gap-2 w-full cursor-crosshair">
             <h2 className="text-2xl font-bold">
                 {company}
             </h2>
