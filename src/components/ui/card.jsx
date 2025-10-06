@@ -1,18 +1,15 @@
 import Image from "next/image";
 
-export default function Card({ company, country, testimony, imageUrl,flag }) {
+export default function Card({ name,description,image }) {
     return (
-        <div className="bg-white/90 text-gray-800 rounded-lg py-4 px-3 mb-3 border-t-4 border-purple-400 shadow-xl  flex flex-col items-center gap-2 w-full cursor-crosshair">
-            <h2 className="text-2xl font-bold">
-                {company}
-            </h2>
-             <Image src={imageUrl} width={200} height={200} className="w-full rounded-sm" alt="testimonial" />
-            <p className="text-sm md:text-base">
-                "{testimony}"
+        <div className="bg-slate-800 text-[#e5e7eb] rounded-lg py-4 px-3 mb-3 shadow-xl flex flex-col gap-1 w-[full] cursor-crosshair">
+             <Image src={image} width={100} height={100} className="w-full max-h-[150px] rounded-sm" alt="projects" />
+            <h3 className="text-md font-semibold">
+                {name}
+            </h3>
+            <p className="text-sm text-white/55 ">
+                {description}
             </p>
-            <span className="font-medium" role="img" aria-label={"{country} flag"}>
-                {country}. <img src={flag} className="inline-block text-center h-7 mx-0.5 rounded-lg w-8"/>
-            </span>
            
         </div>
     )

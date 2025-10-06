@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { ArrowRight } from "lucide-react";
 
 
 const products = [
@@ -12,6 +13,25 @@ const products = [
   { id: 5, name: "AI Cybersecurity Shield", description: "Next-gen protection with anomaly detection & defense" },
   { id: 6, name: "AI Creative Studio", description: "Generate music, video, and art with cutting-edge models" },
 ];
+// const hoverEffects = [
+//   { rotate: 3, scale: 1.05 }, 
+//   { scale: 1.1 }, 
+//   { scale: 1.05, boxShadow: "0px 0px 25px rgba(0,255,255,0.9)" }, 
+//   { y: -10, scale: 1.05 }, 
+//   { rotate: [-2, 2, -2], transition: { repeat: Infinity, duration: 0.4 } }, 
+//   { rotateY: 15, scale: 1.05 }
+// ];
+const wiggleAnimation = {
+  animate: {
+    rotate: [1, -1, 1, -1, 1], // wiggle left-right
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      ease: "easeInOut",
+    },
+  },
+};
+
 
 export default function Products() {
   return (
@@ -43,14 +63,20 @@ export default function Products() {
         {products.map((product, i) => (
           <motion.div
             key={product.id}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 2, y: 0 }}
-            transition={{ delay: i * 0.3 }}
-            whileHover={{ scale: 1.08, boxShadow: "0px 0px 30px rgba(0,255,255,0.7)" }}
-            className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 cursor-pointer transform transition-all"
+            {...wiggleAnimation}
+            transition={{
+              ...wiggleAnimation.animate.transition,
+              delay: i * 0.3,
+            }}
+            
+            className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 cursor-pointer transform transition-all flex flex-col"
           >
             <h2 className="text-2xl font-bold text-cyan-300">{product.name}</h2>
-            <p className="mt-3 text-gray-200">{product.description}</p>
+            <p className="mt-2 text-gray-200">{product.description}</p>
+            <button className="py-2 px-1 text-sm  rounded-lg bg-white text-orange-400/100 mt-2 max-w-[120px] cursor-pointer">
+              View Product
+              <ArrowRight size={12} className="inline-block ml-1 mx-auto" />
+            </button>
           </motion.div>
         ))}
       </div>
@@ -66,7 +92,7 @@ export default function Products() {
               color="cyan"
               emissive="purple"
               emissiveIntensity={0.6}
-            wireframe
+              wireframe
             />
           </mesh>
           <OrbitControls enableZoom={false} autoRotate />

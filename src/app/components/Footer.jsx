@@ -1,20 +1,32 @@
-export default function Footer(){
-    return(
-        <div className="flex items-center justify-between p-6 bg-gradient-to-r from-gray-500 via-purple-500 to-gray-900
+export default function Footer() {
+    return (
+        <div className=" px-24 py-8 bg-slate-800 flex flex-col items-center gap-3 text-sm
  ">
-            <div className="flex flex-col gap-3 p-6 text-white/80">
-                <a>
-                    Contact us
-                </a>
-                <a>
-                    Newsletter
-                </a>
-                <a>
-                    About
-                </a>
-                Privacy
+            <div className="flex flex-col justify-center items-center md:flex-row md:justify-between gap-3 p-6 text-white/55 border-t-1 border-slate-400 min-w-full">
+                <div className="flex gap-4">
+                    <a className="cursor-pointer">
+                        Privacy Policy
+                    </a>
+                    <a className="cursor-pointer">
+                        Terms of Service
+                    </a>
+                </div>
+                
+                <div className="flex gap-1">
+                    <a>
+                        <img src={"/xlogo.avif"} alt="xlogo" className="w-6 h-6 cursor-pointer" />
+                    </a>
+                    <a>
+                        <img src={"/linked.avif"} alt="linkedIn" className="w-6 h-6 cursor-pointer"/>
+                    </a>
+                </div>
             </div>
-            <ul className="ms-auto gap-3 flex flex-col text-white ">
+            <div className=" text-white/55">
+                    <span>
+                        © 2025 NewAItes. All rights reserved.
+                    </span>
+                </div>
+            {/* <ul className="ms-auto gap-3 flex flex-col text-white ">
                 <li>
                     <a>
                         Instagram
@@ -22,7 +34,7 @@ export default function Footer(){
                 </li>
                 <li>
                     <a>
-                       X
+                        X
                     </a>
                 </li>
                 <li>
@@ -35,7 +47,7 @@ export default function Footer(){
                         Instagram
                     </a>
                 </li>
-            </ul>
+            </ul> */}
         </div>
     )
 }

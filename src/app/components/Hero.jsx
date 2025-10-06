@@ -1,23 +1,29 @@
- import Image from "next/image"
- import { motion } from "framer-motion"
- export default function Hero(){
-    return(
-        <div className="mt-4 flex flex-col md:flex-row justify-between items-cemter gap-3 px-4 space-x-2 py-6">
-          
-          <motion.div className="md:w-1/2 flex flex-col max-w-xl h-full" initial={{y:-30, opacity:0}} animate={{y:0,opacity:1}} transition={{duration:1}}>
-            <h1 className="text-4xl font-semibold italic">
-            Welcome to NewAItes,we have been wAIting for you.
-          </h1>
-          <p className="mt-3 ">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis ex magnam illum! Repellat sed tenetur facere aliquid, iste quas voluptates commodi nisi reprehenderit libero ut beatae placeat quos eaque assumenda?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione accusamus vel laudantium quam aliquam, labore quia! Ea dolorem laborum, iure velit deleniti aspernatur non, nostrum maiores accusamus facere distinctio consectetur?Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, enim provident, amet consequatur, molestias minus voluptatibus laborum maxime iste consequuntur officiis distinctio sequi unde fugit accusantium necessitatibus cumque ad earum!Lorem
-          </p>
-          <button className="p-3 rounded-lg bg-purple-500 rounded- mt-3 w-1/3 text-white cursor-pointer italic">
-            Join us
-          </button>
-          </motion.div>
-          <motion.div initial={{x:-250,opacity:1}} animate={{x:0,opacity:1}} transition={{duration:1}}>
-            <Image src="/ai2.avif" width={700} height={200} alt="hero" className="rounded-2xl "/>
-          </motion.div>
-        </div>
-    )
- }
+import { TypeAnimation } from "react-type-animation"
+export default function Hero() {
+  return (
+    <div className="flex flex-col min-h-[400px] justify-center items-center gap-5 px-12 py-12 bg-gradient-to-b from-teal-800 via-teal-800 to-gray-700/90 rounded-lg mb-6">
+      <div className="md:text-3xl font-bold">
+        <TypeAnimation
+          sequence={[
+            "Welcome to NewAItes 🚀,we have been wAIting for you.", 1000,
+            "Explore AI Chat 🤖",
+            1000,
+            "Generate Images 🎨",
+            1000,
+            "Clone Voices 🎤",
+            1000,
+            " Discover groundbreaking AI innovations that are shaping our world.",1000
+          ]}
+          wrapper="h2"
+          speed={50}
+          repeat={Infinity}
+        />
+      </div>
+      <button className="p-3 rounded-lg bg-[#135bec] text-[#e5e7eb]] cursor-pointer transition-transform hover:scale-105">
+        <a href="/about">
+          Learn More
+        </a>
+      </button>
+    </div>
+  )
+}

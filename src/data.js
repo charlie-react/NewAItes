@@ -25,14 +25,17 @@ export const testimonials =[
     "logoUrl": "/c3.avif",
     "flag":"https://flagcdn.com/w40/ke.png"
   },
-  {
-    "id": 4,
-    "company": "BrightPath",
-    "testimony": "Their platform saved us so much time.",
-    "country": "South Africa",
-    "logoUrl": "/c4.avif",
-    "flag":"https://flagcdn.com/w40/za.png"
-  },]
+]
+export const impactData=[
+  {id:1, number:"30+", description:"Projects Completed"},
+  {id:2, number:"5+", description:"Industries Transformed"},
+  {id:3, number:"8+", description:"Countries Reached"}
+]
+
+export const products = [
+  { id: 1, name: "AI Chat Assistant", description: "Conversational AI for smarter business", image:"/aic.png" },
+  { id: 2, name: "AI Image Generator", description: "Turn ideas into visuals instantly",image:"/aiimage.webp" },
+  { id: 3, name: "AI Voice Cloner", description: "Clone voices with human-like realism", image:"/aivoice.webp" },]
 
   export const projects = [
   {
