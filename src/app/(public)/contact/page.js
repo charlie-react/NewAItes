@@ -37,7 +37,7 @@ export default function Contact() {
             <div className="max-w-3xl mx-auto text-center mb-12">
                 <h1 className="text-4xl font-bold text-white">Get in Touch</h1>
                 <p className="text-white mt-3">
-                    Have questions about our AI solutions? We'd love to hear from you.
+                    Have questions about our AI solutions?  We&apos;d love to hear from you.
                     Reach out using the form below or through our contact details.
                 </p>
             </div>

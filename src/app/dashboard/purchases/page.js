@@ -32,7 +32,7 @@ export default function PurchasesPages() {
         <div className="max-w-3xl mx-auto mt-10 p-10 sm:p-0 md:p-0">
             <h1 className="text-3xl font-bold mb-6">My Purchases</h1>
             {purchases.length === 0 ? <p className="text-gray-400">
-                You haven't made any purchases
+              You haven&apos;t made any purchases
             </p> : <div className="space-y-4 grid sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {purchases.map((purchase) =>
                     <div key={purchase.id} className="bg-gray-800 p-5 rounded-lg shadow text-white">
