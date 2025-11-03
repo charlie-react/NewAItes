@@ -3,26 +3,36 @@
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
+import { API_BASE_URL } from "@/config"
+import toast from "react-hot-toast"
 
 
-export default function Modal({ close, open, header, signup, buttonLabel, underLabel }) {
+
+export default function Modal({ close, open, header, signup, buttonLabel, underLabel, submitLabel }) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const [success, setSuccess] = useState("")
+  const [isNotReady, setIsNotReady] = useState(false)
+  // const [error, setError] = useState("")
+  // const [success, setSuccess] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
 
   const handleChangeModal = () => {
     open(signup ? "login" : "signup")
   }
+  let isDisabled = signup
+    ? !name.trim() || !email.trim() || !password.trim()
+    : !email.trim() || !password.trim()
 
   const handleCreateAccount = async (e) => {
     e.preventDefault()
-    setError("")
-    setSuccess("")
+    if (!name || !email || !password) {
+      setIsNotReady(true)
+    }
+    setIsSubmitting(true)
     try {
-      const res = await fetch("/api/signup", {
+      const res = await fetch(`${API_BASE_URL}/api/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
@@ -31,72 +41,88 @@ export default function Modal({ close, open, header, signup, buttonLabel, underL
       const data = await res.json()
 
       if (res.ok) {
-        setSuccess(data.message || "Sign up successful")
+        toast.success(data.message || "Sign up successful")
         setEmail("")
         setName("")
         setPassword("")
+        setIsSubmitting(false)
+        if (typeof window !== "undefined") {
+          localStorage.setItem("user", JSON.stringify(data.user));
+        }
+
         setInterval(() => {
           window.location.href = '/dashboard'
         }, 1500);
       } else {
-        setError(data.error || "Unsuccessful registration")
+        toast.error(data.message || data.error || "Unsuccessful registration")
+        setIsSubmitting(false)
       }
     } catch (err) {
-      setError("Something went wrong. Please try again.")
+      toast.error("Something went wrong. Please try again.")
+      setIsSubmitting(false)
     }
   }
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    setError("")
-    setSuccess("")
+    setIsSubmitting(true)
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch(`${API_BASE_URL}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
       })
 
       const data = await res.json()
+      console.log(data)
 
       if (res.ok) {
-        setSuccess(data.message || "Login success")
+
+        toast.success(data.message || "Login success")
+
+
         setEmail("")
         setPassword("")
-        setTimeout(() => {
-          window.location.href = '/dashboard'
-        }, 1500);
+        setIsSubmitting(false)
+        if (typeof window !== "undefined") {
+          localStorage.setItem("user", JSON.stringify(data.user));
+        }
+
+        close()
+        // setTimeout(() => {
+        //   window.location.href = '/dashboard'
+        // }, 1500);
       } else {
-        setError( "Unsuccessful Log in attempt.")
+        toast.error(data.message || data.error || "Unsuccessful Log in attempt.")
+        setIsSubmitting(false)
       }
     } catch (err) {
-      setError("Something went wrong")
+      toast.error("Something went wrong. Please try again")
+
+      setIsSubmitting(false)
     }
   }
+
+
   return (
-    <div className="py-12 shadow-2xl bg-slate-200/100 absolute z-100 flex flex-col justify-center items-center gap-2 text-black w-200 h-130 rounded-sm left-60">
+    <div className="py-6 px-6 md:py-10 shadow-2xl bg-white absolute z-100 flex flex-col justify-center items-center gap-2 text-black w-110 md:w-180 md:h-100 rounded-sm  md:left-70 md:top-40 ">
       <h1 className="text-2xl text-center mb-4">
         {header}
       </h1>
-      <X className="cursor-pointer absolute top-5 right-5 text-red-500" size={24} onClick={close} />
-      {<form onSubmit={signup ? handleCreateAccount : handleLogin} className={cn("flex flex-col gap-5 p-6 shadow-2xl w-2/3  border-2 border-teal-100 justify-center h-70", signup && "h-100")}>
-        {signup && <input type="text" placeholder="Enter a name..." className="outline-2 p-4" value={name} onChange={(e) => setName(e.target.value)} />}
-        <input type="text" placeholder="Enter email..." className="outline-2 p-4" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Enter password..." className="outline-2 p-4" value={password} onChange={(e) => setPassword(e.target.value)}
+      <X className="cursor-pointer absolute top-5 right-5 text-black" size={24} onClick={close} />
+      {<form onSubmit={signup ? handleCreateAccount : handleLogin} className={cn("flex flex-col p-5 gap-5 md:p-6 shadow-2xl w-full md:w-2/3  border-1 border-black justify-center h-70", signup && "h-80 md:h-80")}>
+        {signup && <input type="text" placeholder="Enter a name..." className="outline-2 p-3 text-slate-800" value={name} onChange={(e) => setName(e.target.value)} />}
+        <input type="text" placeholder="Enter email..." className="outline-2 p-3 text-slate-800" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input type="password" placeholder="Enter password..." className="outline-2 p-3 text-slate-800" value={password} onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit" className="mt-2 w-full rounded-sm text-white py-1.5 cursor-pointer bg-gradient-to-r from-teal-500 to-pink-500"
+        <button type="submit" disabled={isDisabled || isSubmitting} className={cn("mt-2 w-full rounded-sm text-white py-1.5 bg-black", isDisabled || isSubmitting ? "cursor-not-allowed"
+          : "hover:bg-black cursor-pointer")}
         >
-          {buttonLabel}
+          {isSubmitting ? submitLabel : buttonLabel}
         </button>
-        {error && <p className="text-red-600 text-center">
-          {error}
-        </p>}
-        {success && <p className="text-teal-600 text-center">
-          {success}
-        </p>}
       </form>}
 
-      <span className="text-sm cursor-pointer underline" onClick={handleChangeModal}>
+      <span className="text-sm cursor-pointer underline mb-4" onClick={handleChangeModal}>
         {underLabel}
       </span>
     </div>

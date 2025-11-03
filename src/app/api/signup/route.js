@@ -6,7 +6,7 @@ import { cookies } from "next/headers"
 
 export async function POST(req) {
     try {
-        const { name, email, password } = await req.json()
+        const { name, email, password } = await req.json
 
         // check if user exists
         const existing = await prisma.user.findUnique({ where: { email } })

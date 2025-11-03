@@ -2,12 +2,12 @@
 
 export default function ImpactCard({ number,description }) {
     return (
-        <div className="bg-slate-800 text-[#e5e7eb] rounded-lg py-4 px-3 mb-3 shadow-xl flex flex-col gap-2 w-[full] cursor-crosshair items-center">
+        <div className="bg-white text-[#080e1a] rounded-lg py-4 px-3 mb-3 shadow-xl flex flex-col gap-2 w-[full] cursor-crosshair items-center">
             
-            <h3 className="text-3xl font-bold text-[#135bec]">
+            <h3 className="text-3xl font-bold ">
                 {number}
             </h3>
-            <p className=" text-white/55 capitalize">
+            <p className="  capitalize">
                 {description.toUpperCase()}
             </p>
            

@@ -3,27 +3,15 @@ import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { ArrowRight } from "lucide-react";
+import { API_BASE_URL } from "@/config";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Loader from "@/components/ui/loader";
 
 
-const products = [
-  { id: 1, name: "AI Chat Assistant", description: "Conversational AI for smarter business" },
-  { id: 2, name: "AI Image Generator", description: "Turn ideas into visuals instantly" },
-  { id: 3, name: "AI Voice Cloner", description: "Clone voices with human-like realism" },
-  { id: 4, name: "AI Data Analyzer", description: "Transform raw data into insights using predictive AI" },
-  { id: 5, name: "AI Cybersecurity Shield", description: "Next-gen protection with anomaly detection & defense" },
-  { id: 6, name: "AI Creative Studio", description: "Generate music, video, and art with cutting-edge models" },
-];
-// const hoverEffects = [
-//   { rotate: 3, scale: 1.05 }, 
-//   { scale: 1.1 }, 
-//   { scale: 1.05, boxShadow: "0px 0px 25px rgba(0,255,255,0.9)" }, 
-//   { y: -10, scale: 1.05 }, 
-//   { rotate: [-2, 2, -2], transition: { repeat: Infinity, duration: 0.4 } }, 
-//   { rotateY: 15, scale: 1.05 }
-// ];
 const wiggleAnimation = {
   animate: {
-    rotate: [1, -1, 1, -1, 1], // wiggle left-right
+    rotate: [1, -1, 1, -1, 1],
     transition: {
       duration: 2,
       repeat: Infinity,
@@ -33,10 +21,26 @@ const wiggleAnimation = {
 };
 
 
+
+
 export default function Products() {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/products`);
+        const data = await res.json();
+        setProducts(data.data || []);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-purple-950 text-white p-10 relative overflow-hidden">
-      {/* Animated background glow */}
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-gray-900 to-purple-950 text-white py-26 px-10 relative overflow-hidden">
+
       <motion.div
         className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-purple-600 rounded-full blur-3xl opacity-20"
         animate={{ scale: [1, 1.3, 1] }}
@@ -53,14 +57,14 @@ export default function Products() {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
-        className="text-5xl font-extrabold mb-14 text-center bg-gradient-to-r from-yellow-400 to-pink-500 text-transparent bg-clip-text"
+        className="text-3xl md:text-5xl font-extrabold mb-14 text-center bg-blue-500 text-slate-300 bg-clip-text"
       >
         🚀 NewAItes Products
       </motion.h1>
 
       {/* Products Grid */}
-      <div className="grid md:grid-cols-3 gap-10 relative z-10">
-        {products.map((product, i) => (
+      <div className="grid md:grid-cols-3 gap-10  relative z-10">
+        {products.length > 0 ? products.map((product, i) => (
           <motion.div
             key={product.id}
             {...wiggleAnimation}
@@ -68,17 +72,20 @@ export default function Products() {
               ...wiggleAnimation.animate.transition,
               delay: i * 0.3,
             }}
-            
-            className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 cursor-pointer transform transition-all flex flex-col"
+
+            className="bg-white text-black backdrop-blur-xl mx-auto  rounded-2xl w-[350px] sm:w-full text-center min-h-[200px] py-2 px-3 md:py-4 md:px-4 border border-white cursor-pointer transform transition-all flex flex-col"
           >
-            <h2 className="text-2xl font-bold text-cyan-300">{product.name}</h2>
-            <p className="mt-2 text-gray-200">{product.description}</p>
-            <button className="py-2 px-1 text-sm  rounded-lg bg-white text-orange-400/100 mt-2 max-w-[120px] cursor-pointer">
-              View Product
-              <ArrowRight size={12} className="inline-block ml-1 mx-auto" />
-            </button>
+            <h2 className="text-2xl font-bold text-black">{product.name}</h2>
+            <p className="mt-2  max-w-[300px]">{product.description}</p>
+            <Link href={`/products/${product.id}`}>
+              <button className="py-2 px-2 text-sm  rounded-lg bg-black text-slate-100 mt-2 max-w-[120px] cursor-pointer">
+                View Product
+                <ArrowRight size={12} className="inline-block ml-1 mx-auto" />
+              </button>
+            </Link>
           </motion.div>
-        ))}
+        )) : <div className="flex items-center justify-center mx-auto">
+          <Loader/></div>}
       </div>
 
       {/* 3D Neon Orb */}

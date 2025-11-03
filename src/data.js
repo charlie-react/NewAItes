@@ -33,9 +33,9 @@ export const impactData=[
 ]
 
 export const products = [
-  { id: 1, name: "AI Chat Assistant", description: "Conversational AI for smarter business", image:"/aic.png" },
-  { id: 2, name: "AI Image Generator", description: "Turn ideas into visuals instantly",image:"/aiimage.webp" },
-  { id: 3, name: "AI Voice Cloner", description: "Clone voices with human-like realism", image:"/aivoice.webp" },]
+  { id: 1, name: "AI Chat Assistant", description: "Conversational AI for smarter business", image:"/chat.png" },
+  { id: 2, name: "AI Image Generator", description: "Turn ideas into visuals instantly",image:"/img.png" },
+  { id: 3, name: "AI Voice Cloner", description: "Clone voices with human-like realism", image:"/voice.png" },]
 
   export const projects = [
   {
@@ -172,7 +172,7 @@ export const team = [
     id:1,
     name: "Charles Afolabi",
     role: "Founder & CEO",
-    image: "/meeenow.jpg",
+    image: "/aboutme.png",
     bio: "Tech entrepreneur passionate about using AI to solve real-world challenges across Africa."
   },
   {

@@ -4,11 +4,11 @@ import { Button } from "./button"
 export default function ProjectCard({ name, status, lastUpdated }) {
 
     const { style } = statusConfig[status]
-    console.log(style)
+ 
     return (
-        <div className="flex flex-col py-6 px-2 rounded-lg gap-3 text-lg bg-white/40   shadow-xl">
-            <h2 className="text-sm">
-                Title: <span className="font-medium">
+        <div className="flex w-[400px] md:w-full flex-col md:py-4 md:px-4 px-3 py-3 text-lg rounded-lg gap-2 bg-black  text-white shadow-xl">
+            <h2 className="text-md  max-w-[400px]">
+                Title: <span className="">
                     {name}
                 </span>
             </h2>
@@ -17,7 +17,7 @@ export default function ProjectCard({ name, status, lastUpdated }) {
                     {lastUpdated}
                 </span>
             </p>
-            <div className={`${style} rounded-lg text-center flex gap-1 items-center`}>
+            <div className={`${style} rounded-lg text-white text-center flex gap-1 items-center`}>
                 
                 <span className="text-sm">
                     {status == "Active" && <span>
@@ -31,14 +31,14 @@ export default function ProjectCard({ name, status, lastUpdated }) {
                     </span>}   {status}
                 </span>
             </div>
-            <div className=" flex-1 -ml-4" >
-                <Button variant={"ghost"} className={"cursor-pointer"}>
+            <div className="flex px-2 items-center md:justify-center" >
+                <Button variant={"ghost"} size={"sm"} className={"cursor-pointer"}>
                     👁View
                 </Button>
-                <Button variant={"ghost"} className={"cursor-pointer"}>
+                <Button variant={"ghost"} size={"sm"} className={"cursor-pointer"}>
                     ✏️Edit
                 </Button>
-                <Button variant={"ghost"} className={"cursor-pointer"}>
+                <Button variant={"ghost"} size={"sm"} className={"cursor-pointer"}>
                     ⚡Run
                 </Button>
             </div>

@@ -4,8 +4,8 @@ import { products } from "@/data"
 
 export default function Innovations() {
     return (
-        <div className="mt-12">
-            <h1 className="text-center text-nowrap text-lg font-extrabold sm:text-4xl py-4 md:font-bold">
+        <div className="mt-12 flex flex-col items-center justify-around">
+            <h1 className="text-center text-black text-nowrap text-lg font-extrabold sm:text-4xl py-4 md:font-bold">
               Featured Innovations
             </h1>
                 <div className="lg:col-span-3 grid grid-cols-1 gap-6 sm:grid-cols-3 mt-6">

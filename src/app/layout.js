@@ -1,9 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import getUserFromSession from "@/lib/sessions";
-import Navbar from "./components/Navbar";
+
 import ModalProvider from "../context/ModalContext";
 import { redirect } from "next/navigation";
+import { Toaster } from "react-hot-toast";
 
 
 const geistSans = Geist({
@@ -22,10 +22,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const user = await getUserFromSession()
-  // if(!user){
-  //   redirect("/")
-  // }
+
 
   return (
     <html lang="en">
@@ -35,6 +32,7 @@ export default async function RootLayout({ children }) {
         <ModalProvider>
           {children}
         </ModalProvider>
+        <Toaster position="top-right" reverseOrder={false}/>
       </body>
     </html>
   );
