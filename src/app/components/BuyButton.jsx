@@ -9,14 +9,15 @@ import toast from "react-hot-toast";
 
 export default function BuyButton({ product }) {
     const [isLoading, setIsLoading] = useState(false)
-    const {openModal} = useModal()
+    const { openModal } = useModal()
 
     const handleBuy = async () => {
-       
+
         const user = JSON.parse(localStorage.getItem("user"))
         if (!user) return openModal("signup")
-        
-            setIsLoading(true)
+        const email = user?.email;
+
+        setIsLoading(true)
 
         try {
             const res = await fetch(`${API_BASE_URL}/api/pay`, {
