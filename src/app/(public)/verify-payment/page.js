@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { API_BASE_URL } from "@/config";
 
-export default function VerifyPayment() {
+ function VerifyPayment() {
   const searchParams = useSearchParams();
   const reference = searchParams.get("reference");
   const [status, setStatus] = useState("Verifying Payment...");
@@ -24,8 +25,19 @@ export default function VerifyPayment() {
   }, [reference]);
 
   return (
+   
     <div className="flex justify-center items-center h-screen text-3xl font-bold">
       {status}
     </div>
+ 
+  );
+}
+
+
+export default function VerifyPaymentContent() {
+  return (
+    <Suspense fallback={<div className="text-3xl font-bold">Loading...</div>}>
+      <VerifyPayment />
+    </Suspense>
   );
 }

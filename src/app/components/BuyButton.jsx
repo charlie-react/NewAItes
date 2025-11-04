@@ -1,4 +1,7 @@
 "use client";
+
+export const dynamic = "force-dynamic";
+
 import { API_BASE_URL } from "@/config";
 import useModal from "@/hooks/useModal";
 import { useState } from "react";

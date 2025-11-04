@@ -1,5 +1,7 @@
 "use client"
 
+export const dynamic = "force-dynamic";
+
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
