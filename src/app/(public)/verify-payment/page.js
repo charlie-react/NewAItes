@@ -4,11 +4,16 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { API_BASE_URL } from "@/config";
+import Loader from "@/components/ui/loader";
 
- function VerifyPayment() {
+function VerifyPayment() {
   const searchParams = useSearchParams();
   const reference = searchParams.get("reference");
-  const [status, setStatus] = useState("Verifying Payment...");
+  const [status, setStatus] = useState(<div className="flex gap-2 items-center text-white">
+    <div>
+      <Loader /></div>
+    <div className="text-white">Verifying your payment.Please be patient</div>
+  </div>);
 
   useEffect(() => {
     if (!reference) return;
@@ -18,18 +23,18 @@ import { API_BASE_URL } from "@/config";
       console.log(data)
       setStatus(data.success ? "Payment Successful ✅" : "Payment Failed ❌");
       setTimeout(() => {
-          window.location.href = `/dashboard/receipt/${reference}`; 
-        }, 2000);
+        window.location.href = `/dashboard/receipt/${reference}`;
+      }, 2000);
     };
     verify();
   }, [reference]);
 
   return (
-   
-    <div className="flex justify-center items-center h-screen text-3xl font-bold">
+
+    <div className="flex justify-center items-center h-screen text-3xl text-white bg-black font-bold">
       {status}
     </div>
- 
+
   );
 }
 

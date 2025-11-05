@@ -1,10 +1,12 @@
 "use client"
 
 import useModal from "@/hooks/useModal"
+import { User } from "lucide-react"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
+import { useState } from "react"
 export default function Navbar({ user }) {
-  console.log(user)
+  const [openDash,setOpenDash] = useState(false)
   const { openModal } = useModal()
   const pathname = usePathname()
   
@@ -27,7 +29,7 @@ export default function Navbar({ user }) {
               Products
             </a>
           </li>
-          <li className={`transition-transform hover:scale-x-105`}>
+          <li className={`transition-transform  hover:scale-x-105`}>
             <a href="/about" >
               About
             </a>
@@ -45,11 +47,20 @@ export default function Navbar({ user }) {
 
         </ul>
         <div className="flex items-center justify-center gap-2">
-          {user ? <a href="/dashboard">
-            <button className="p-2 rounded-md text-slate-500 bg-white font-semibold text-base cursor-pointer transition-transform hover:scale-105">
+          {user ? <div className="relative">
+            <button className="flex gap-2 p-2 rounded-md text-slate-500 bg-white font-semibold text-base cursor-pointer transition-transform hover:scale-105" onClick={()=>setOpenDash(prev=>!prev)}>
+              <User className="rounded-full bg-slate-200 p-1"/>
               Hello, {user.name.charAt(0).toUpperCase() + user.name.slice(1)}
             </button>
-          </a> : <div className="flex gap-2">
+           {openDash && <div className="absolute top-10 left-8 rounded-sm px-2 py-2 items-center justify-center flex flex-col gap-2 shadow-md bg-white text-black w-35 " >
+            <a href="/dashboard" className="border-b border-slate-400 w-full hover:bg-slate-100  p-2">
+                Dashboard
+            </a>
+            <a href="/dashboard/profile" className="w-full transition-transform duration-75 hover:bg-slate-100 p-2">
+              Profile
+            </a>
+            </div>}
+          </div> : <div className="flex gap-2">
             <button className={`bg-white text-black px-3 py-2 md:py-2 text-md font-semibold rounded-lg transition-transform hover:scale-105 md:px-3 flex-1 cursor-pointer`} onClick={() => openModal("signup")} >
               Get Started
             </button>

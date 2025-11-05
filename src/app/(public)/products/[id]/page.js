@@ -3,7 +3,7 @@
 import BuyButton from "@/app/components/BuyButton";
 import { API_BASE_URL } from "@/config"
 import { Lightbulb, Search, Workflow } from "lucide-react";
-import useModal from "@/hooks/useModal";
+
 
 
 

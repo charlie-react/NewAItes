@@ -1,11 +1,13 @@
 "use client"
-import { LayoutDashboard, Package, Settings, ShoppingCart, User } from "lucide-react";
+import { LayoutDashboard, Package, Settings, ShoppingCart, User, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Logout from "../components/Logout";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+
 
 export default function DashboardLayout({ children }) {
-
+    const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname()
 
     const links = [
@@ -17,7 +19,7 @@ export default function DashboardLayout({ children }) {
     ];
     return (
         <div className="flex flex-row">
-            <aside className="hidden w-64 min-h-screen md:flex flex-col gap-3 bg-black p-4  text-white">
+            <aside className={`fixed inset-y-0 left-0 z-50 transform transition-transform duration-300 ease-in-out w-64 min-h-screen md:flex flex-col gap-3 bg-black p-4  text-white ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static md:inset-0`}>
                 <div className="flex flex-col px-2 py-6 gap-2 rounded-lg">
                     {links.map((link) => {
                         const isActive = pathname.includes(link.href) || pathname === link.href
@@ -34,7 +36,19 @@ export default function DashboardLayout({ children }) {
 
                 </div>
             </aside>
-            <main className="flex-1">
+            {isOpen && (
+                <div
+                    className="fixed inset-0 bg-black/65 bg-opacity-40 md:hidden"
+                    onClick={() => setIsOpen(false)}
+                />
+            )}
+            <main className="flex-1 flex flex-col overflow-y-auto">
+                <header className="flex items-center justify-between px-4 py-3 bg-black text-white shadow-md md:hidden">
+                    <button className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                    <h1 className="text-lg font-semibold">Dashboard</h1>
+                </header>
                 {children}
             </main>
         </div>

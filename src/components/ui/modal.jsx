@@ -15,8 +15,6 @@ export default function Modal({ close, open, header, signup, buttonLabel, underL
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isNotReady, setIsNotReady] = useState(false)
-  // const [error, setError] = useState("")
-  // const [success, setSuccess] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
 
@@ -32,7 +30,14 @@ export default function Modal({ close, open, header, signup, buttonLabel, underL
     if (!name || !email || !password) {
       setIsNotReady(true)
     }
-    setIsSubmitting(true)
+  
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      return toast.error(
+        "Password must be at least 8 characters long, include a number, an uppercase and lowercase letter."
+      );
+    }
+      setIsSubmitting(true)
     try {
       const res = await fetch(`${API_BASE_URL}/api/signup`, {
         method: "POST",
@@ -90,10 +95,9 @@ export default function Modal({ close, open, header, signup, buttonLabel, underL
           localStorage.setItem("user", JSON.stringify(data.user));
         }
 
-        close()
-        // setTimeout(() => {
-        //   window.location.href = '/dashboard'
-        // }, 1500);
+       setInterval(() => {
+          window.location.href = '/dashboard'
+        }, 1500);
       } else {
         toast.error(data.message || data.error || "Unsuccessful Log in attempt.")
         setIsSubmitting(false)
@@ -107,7 +111,7 @@ export default function Modal({ close, open, header, signup, buttonLabel, underL
 
 
   return (
-    <div className="py-6 px-6 md:py-10 shadow-2xl bg-white absolute z-100 flex flex-col justify-center items-center gap-2 text-black w-110 md:w-180 md:h-100 rounded-sm  md:left-70 md:top-40 ">
+    <div className="py-6 px-6 md:py-10 shadow-2xl bg-white absolute z-50 flex flex-col justify-center items-center gap-2 text-black w-110 md:w-180 md:h-100 rounded-sm top-10 left-7 md:left-70 md:top-40 fixed">
       <h1 className="text-2xl text-center mb-4">
         {header}
       </h1>
