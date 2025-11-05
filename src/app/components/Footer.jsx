@@ -10,6 +10,9 @@ export default function Footer() {
                     <a className="cursor-pointer">
                         Terms of Service
                     </a>
+                    <a className="cursor-pointer" href="/contact">
+                        Contact Us
+                    </a>
                 </div>
                 
                 <div className="flex gap-1">

@@ -6,7 +6,7 @@ export default function ProjectCard({ name, status, lastUpdated }) {
     const { style } = statusConfig[status]
  
     return (
-        <div className="flex w-[400px] md:w-full flex-col md:py-4 md:px-4 px-3 py-3 text-lg rounded-lg gap-2 bg-black  text-white shadow-xl">
+        <div className="flex w-[300px] md:w-full flex-col md:py-4 md:px-4 px-3 py-3 text-lg rounded-lg gap-2 bg-black  text-white shadow-xl">
             <h2 className="text-md  max-w-[400px]">
                 Title: <span className="">
                     {name}

@@ -111,7 +111,7 @@ export default function Modal({ close, open, header, signup, buttonLabel, underL
 
 
   return (
-    <div className="py-6 px-6 md:py-10 shadow-2xl bg-white  z-50 flex flex-col justify-center items-center gap-2 text-black w-110 md:w-180 md:h-100 rounded-sm top-10 left-7 md:left-70 md:top-40 fixed">
+    <div className="py-6 px-6 md:py-10 shadow-2xl bg-white  z-50 flex flex-col justify-center items-center gap-2 text-black w-90 md:w-180 md:h-100 rounded-sm top-10 left-6 md:left-70 md:top-40 fixed">
       <h1 className="text-2xl text-center mb-4">
         {header}
       </h1>
