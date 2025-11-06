@@ -5,6 +5,7 @@ import Hero from "../components/Hero";
 import Innovations from "../components/Innovations";
 import Impact from "../components/Impact";
 import PreFooter from "../components/PreFooter";
+import StarryBackground from "../components/StarryBackground";
 
 
 
@@ -20,11 +21,14 @@ export default function Home() {
   // }, [authError,openModal])
 
   return (
-    <div className=" animated-bg  p-6 md:p-24 " >
+    <>
+    <StarryBackground/>
+    <div className="p-6 md:p-24 " >
       <Hero />
      <Innovations/>
      <Impact/>
      <PreFooter/>
     </div>
+    </>
   ); 
 }
