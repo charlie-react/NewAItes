@@ -5,7 +5,7 @@ import useModal from "@/hooks/useModal"
 export default function PreFooter() {
     const { openModal } = useModal()
     return (
-        <div className="flex flex-col min-h-[400px] justify-center items-center gap-5 px-12 py-12 bg-white rounded-lg mt-16">
+        <div className="flex flex-col min-h-[200px] md:min-h-[400px] justify-center items-center gap-5  py-8 px-12 md:py-12 bg-white rounded-lg mt-16">
             <h1 className="text-2xl md:text-4xl text-black font-semibold">
                 Ready to Innovate?
             </h1>

@@ -1,7 +1,7 @@
 import { TypeAnimation } from "react-type-animation"
 export default function Hero() {
   return (
-    <div className="flex flex-col min-h-[400px] justify-center items-center gap-5 px-12 py-12 bg-white text-black/95 rounded-lg mb-6 md:mt-12 mt-24">
+    <div className="flex flex-col min-h-[200px]  md:min-h-[400px] justify-center items-center gap-5 px-8 py-8 md:px-12 md:py-12 bg-white text-black/95 rounded-lg mb-6 md:mt-12 mt-24">
       <div className="md:text-3xl font-bold">
         <TypeAnimation
           sequence={[
