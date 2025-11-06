@@ -9,12 +9,28 @@ import ProjectCard from "@/components/ui/project-card";
 import RecentActivities from "../components/RecentActivities";
 import Announcements from "../components/Announcements";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Loader from "@/components/ui/loader";
 
 
 
 export default function Dashboard() {
-    const [user, setUser] = useState(null);
+       const [isLoading,setIsLoading]= useState(true)
+       const [user, setUser] = useState(null);
+    const router = useRouter()
     useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (!token) {
+            router.replace("/")
+        }else{
+            setIsLoading(false)
+        }
+    }, [router])
+
+ 
+
+    useEffect(() => {
+
         const storedUser = JSON.parse(localStorage.getItem("user"));
         if (storedUser) setUser(storedUser);
     }, []);
@@ -29,7 +45,13 @@ export default function Dashboard() {
     } else {
         greeting = "Good evening"
     }
-
+if(isLoading){
+    return(
+       <div className="mx-auto flex justify-center w-full h-full items-center bg-black/80">
+         <Loader/>
+       </div>
+    )
+}
     return (
         <div className="bg-black/80 text-white h-full p-2">
             <div className="mb-5 flex flex-col gap-3 md:flex-row justify-center md:justify-between items-center py-6 px-6 ">

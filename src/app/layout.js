@@ -2,7 +2,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import ModalProvider from "../context/ModalContext";
-import { redirect } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 
 

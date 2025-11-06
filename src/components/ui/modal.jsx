@@ -55,6 +55,7 @@ export default function Modal({ close, open, header, signup, buttonLabel, underL
         setIsSubmitting(false)
         if (typeof window !== "undefined") {
           localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
         }
 
         setInterval(() => {
@@ -93,6 +94,7 @@ export default function Modal({ close, open, header, signup, buttonLabel, underL
         setIsSubmitting(false)
         if (typeof window !== "undefined") {
           localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
         }
 
        setInterval(() => {
